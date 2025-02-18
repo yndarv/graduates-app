@@ -5,15 +5,15 @@
 	let { columns, data, ...props } = $props();
 
 	function tableAction(node, { data, columns }) {
-		const defaultProps = {
-			pagination: 'local',
-			paginationSize: 7,
-		};
 		let table = new Tabulator(node, {
-			data,
-			columns,
-			...defaultProps,
-			...props,
+			data: data,
+			columns: columns,
+			pagination: true,
+			paginationMode: "local",
+			rowpage: function (pageSize, currentRow, currentPage, totalRows, totalPages) {
+				return 'Showing ' + pageSize + ' rows of ' + totalRows + ' total';
+			},
+			...props
 		});
 		return {
 			update: ({ data }) => {
@@ -23,4 +23,16 @@
 	}
 </script>
 
-<div use:tableAction={{ data, columns }}></div>
+<div class="table-container">
+	<div id="table" use:tableAction={{ data, columns }}></div>
+</div>
+
+<style>
+	.table-container {
+		height: 98vh;
+	}
+
+	#table {
+		height: 100%;
+	}
+</style>
