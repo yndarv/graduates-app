@@ -1,5 +1,8 @@
-import { tableData, tableColumns } from '$lib/data'
+import { tableData, tableColumns } from '$lib/data';
+import { redirect } from '@sveltejs/kit';
 
 export function load() {
-  return { tableData, tableColumns }
+	throw redirect(302, '/students');
+
+	// return { tableData, tableColumns };
 }

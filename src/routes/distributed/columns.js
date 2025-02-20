@@ -1,6 +1,4 @@
-import { mockStudent } from './mock';
-
-export const tableColumns = [
+export const columns = [
 	{
 		field: 'id',
 		title: 'ID',
@@ -12,8 +10,18 @@ export const tableColumns = [
 		editable: false
 	},
 	{
-		field: 'fullName',
-		title: 'ФИО',
+		field: 'student_id',
+		title: 'STUDENTID',
+		sorter: 'number',
+		width: 50,
+		visible: false,
+		hozAlign: 'center',
+		frozen: true,
+		editable: false
+	},
+	{
+		field: 'profiling',
+		title: 'Профиль',
 		sorter: 'string',
 		hozAlign: 'left',
 		frozen: true
@@ -66,5 +74,3 @@ export const tableColumns = [
 		hozAlign: 'center'
 	}
 ];
-
-export const tableData = Array.from({ length: 150 }, () => mockStudent());
