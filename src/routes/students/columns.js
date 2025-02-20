@@ -17,6 +17,8 @@ export const columns = [
 		frozen: true,
 		editor: 'input',
 		editorParams: {},
+		headerFilter: true,
+		headerFilterPlaceholder: 'поиск',
 		editable: true
 		// validator: 'required'
 	},
@@ -28,6 +30,8 @@ export const columns = [
 		editor: 'input',
 		editorParams: {},
 		frozen: false,
+		headerFilter: true,
+		headerFilterPlaceholder: 'поиск',
 		editable: true
 		// validator: 'required'
 	},
