@@ -3,13 +3,15 @@
 	import { TabulatorFull as Tabulator } from 'tabulator-tables';
 	import 'tabulator-tables/dist/css/tabulator_bootstrap3.min.css';
 	import 'bootstrap/dist/css/bootstrap.min.css';
+	import { DateTime } from 'luxon';
 
-	let { columns, createRequest, updateRequest, removeRequest, ...props } = $props();
+	let { columns, createRequest, updateRequest, removeRequest, onMountHandler, ...props } = $props();
 	let table;
 	let tableNode;
 
 	const deleteColumn = {
 		field: 'delete',
+		title: 'Действия',
 		headerSort: false,
 		formatter: function () {
 			return `<button class="btn btn-danger btn-sm">
@@ -19,7 +21,6 @@
 		cellClick: async function (e, cell) {
 			if (e.target.tagName === 'BUTTON') {
 				const id = cell.getRow().getData().id;
-				console.log('id ', id);
 				if (id) {
 					try {
 						await removeRequest(id);
@@ -28,7 +29,7 @@
 						console.error('Error deleting row:', error);
 					}
 				} else {
-					console.error('Invalid student ID:', id);
+					console.error('Invalid ID:', id);
 				}
 			}
 		},
@@ -39,11 +40,12 @@
 
 	onMount(() => {
 		table = new Tabulator(tableNode, {
+			layout: 'fitDataFill',
 			columns,
-			layout: 'fitColumns',
 			placeholder: 'Пусто',
 			reactiveData: true,
 			rowHeader: {
+				title: '#',
 				formatter: 'rownum',
 				headerSort: false,
 				hozAlign: 'center',
@@ -51,8 +53,21 @@
 				width: 60,
 				frozen: true
 			},
+			dependencies: {
+				DateTime
+			},
 			...props
 		});
+
+		if (onMountHandler) {
+			onMountHandler(table);
+		}
+
+		if (onRowClick) {
+			table.on('rowContext', (e, row) => {
+				onRowClick(row.getData());
+			});
+		}
 
 		table.on('cellEdited', async (cell) => {
 			await updateRequest(cell.getRow().getData().id, {
@@ -63,12 +78,6 @@
 				nextCell.edit();
 			}
 		});
-	});
-
-	onDestroy(() => {
-		if (table) {
-			table.destroy();
-		}
 	});
 
 	function getNextCell(cell) {
