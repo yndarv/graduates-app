@@ -21,3 +21,9 @@ export async function updateStudent(id, student) {
 	}).then((res) => res.json());
 	return resp.id;
 }
+
+export async function removeStudent(id) {
+	await fetch(`${baseUrl}/${id}`, {
+		method: 'DELETE'
+	}).catch((error) => console.log(error));
+}
