@@ -28,6 +28,8 @@
 	},
 	"dependencies": {
 		"bootstrap": "^5.3.3",
+		"isomorphic-ws": "^5.0.0",
+		"luxon": "^3.5.0",
 		"tabulator-tables": "^6.3.1"
 	}
 }
