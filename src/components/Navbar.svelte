@@ -34,11 +34,11 @@
 				</li>
 				<li class="nav-item">
 					<a
-						class="nav-link {currentPage === 'working' ? 'active' : ''}"
-						href="/working"
-						aria-current={currentPage === 'working' ? 'page' : undefined}
+						class="nav-link {currentPage === 'unemployed' ? 'active' : ''}"
+						href="/unemployed"
+						aria-current={currentPage === 'unemployed' ? 'page' : undefined}
 					>
-						Работают
+						Не Трудоустроились
 					</a>
 				</li>
 				<li class="nav-item">
