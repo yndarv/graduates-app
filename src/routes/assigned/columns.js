@@ -25,19 +25,6 @@ export const columns = [
 		// validator: 'required'
 	},
 	{
-		field: 'address',
-		title: 'Адрес',
-		sorter: 'string',
-		hozAlign: 'left',
-		editor: 'input',
-		editorParams: {},
-		frozen: false,
-		headerFilter: true,
-		headerFilterPlaceholder: 'поиск',
-		editable: true
-		// validator: 'required'
-	},
-	{
 		field: 'profiling',
 		title: 'Профиль',
 		sorter: 'string',
