@@ -63,20 +63,14 @@
 			onMountHandler(table);
 		}
 
-		if (onRowClick) {
-			table.on('rowContext', (e, row) => {
-				onRowClick(row.getData());
-			});
-		}
-
 		table.on('cellEdited', async (cell) => {
 			await updateRequest(cell.getRow().getData().id, {
 				[cell.getColumn().getField()]: cell.getValue().toString()
 			});
-			const nextCell = getNextCell(cell);
-			if (nextCell) {
-				nextCell.edit();
-			}
+			// const nextCell = getNextCell(cell);
+			// if (nextCell) {
+			// 	nextCell.edit();
+			// }
 		});
 	});
 
