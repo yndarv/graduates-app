@@ -1,8 +1,8 @@
 export function setAuthToken({ cookies, token }) {
-	cookies.set('token', token, {
+	cookies.set('jwtToken', token, {
 		httpOnly: true,
 		secure: true,
-		sameSite: 'strict',
+		sameSite: 'Strict',
 		maxAge: 60 * 60 * 24, // 1d
 		path: '/'
 	});
