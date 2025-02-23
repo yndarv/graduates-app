@@ -4,7 +4,6 @@
 
 	let { children, data } = $props();
 	const user = data.user;
-	console.log(data.user);
 
 	async function logout() {
 		await fetch('/logout', {
