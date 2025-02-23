@@ -11,11 +11,11 @@
 				<h3 class="text-center mb-3">Login</h3>
 				<form method="POST" action="?/login">
 					<div class="mb-3">
-						<label class="form-label">Username</label>
+						<label for="" class="form-label">Username</label>
 						<input type="text" class="form-control" name="username" required />
 					</div>
 					<div class="mb-3">
-						<label class="form-label">Password</label>
+						<label for="" class="form-label">Password</label>
 						<input type="password" class="form-control" name="password" required />
 					</div>
 					<button type="submit" class="btn btn-primary w-100">Login</button>
