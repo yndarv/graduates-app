@@ -2,12 +2,11 @@ import { decodeJwtPayload } from '$lib/util.js';
 import { redirect } from '@sveltejs/kit';
 
 export const handle = async ({ event, resolve }) => {
-	const token = event.cookies.get('token');
+	const token = event.cookies.get('jwtToken');
 
 	// WARN: this is crap
 	if (token) {
 		const user = decodeJwtPayload(token);
-		console.log(user);
 		if (user) {
 			event.locals.user = user;
 		}
