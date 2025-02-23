@@ -1,4 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
+
 import { setAuthToken } from '$lib/util';
 import { loginUser } from '$lib/api';
 
@@ -9,7 +10,7 @@ export const actions = {
 		const password = formData.password;
 
 		try {
-			const { token } = await loginUser(username, password);
+			const token = await loginUser(username, password);
 
 			setAuthToken({ cookies, token });
 
