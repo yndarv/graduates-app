@@ -1,5 +1,6 @@
 <script>
 	import 'bootstrap/dist/css/bootstrap.min.css';
+	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import { page } from '$app/stores';
 
 	let { children, data } = $props();
@@ -64,6 +65,6 @@
 	</nav>
 </header>
 
-<main class="container mt-4">
+<main>
 	{@render children()}
 </main>
