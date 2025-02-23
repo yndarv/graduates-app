@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080';
+export const baseUrl = 'http://localhost:8080';
 
 export async function loginUser(username, password) {
 	const response = await fetch(`${baseUrl}/api/auth/login`, {
@@ -6,14 +6,15 @@ export async function loginUser(username, password) {
 		headers: {
 			'Content-Type': 'application/json'
 		},
+		credentials: 'include',
 		body: JSON.stringify({ username, password })
 	});
 
 	if (!response.ok) {
-		// Handle errors, e.g., throw an error or return a specific message
 		const errorData = await response.json();
 		throw new Error(errorData.message || 'Registration failed');
+	} else {
+		// i dont know sveltekit
+		return response.headers.get('set-cookie');
 	}
-
-	return response.json();
 }
