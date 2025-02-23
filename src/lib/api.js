@@ -14,7 +14,9 @@ export async function loginUser(username, password) {
 		const errorData = await response.json();
 		throw new Error(errorData.message || 'Registration failed');
 	} else {
-		// i dont know sveltekit
-		return response.headers.get('set-cookie');
+		const setCookie = response.headers.get('set-cookie');
+		// AHHAHAHHAHAHAHAHHAHA
+		// TODO: move login to the client side
+		return setCookie.split(';')[0].split('=')[1];
 	}
 }
