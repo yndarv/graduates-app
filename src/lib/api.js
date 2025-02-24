@@ -11,8 +11,7 @@ export async function loginUser(username, password) {
 	});
 
 	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(errorData.message || 'Registration failed');
+		throw new Error('Login failed');
 	} else {
 		const setCookie = response.headers.get('set-cookie');
 		// AHHAHAHHAHAHAHAHHAHA
