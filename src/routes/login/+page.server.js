@@ -11,9 +11,7 @@ export const actions = {
 
 		try {
 			const token = await loginUser(username, password);
-
 			setAuthToken({ cookies, token });
-
 			throw redirect(302, '/');
 		} catch (error) {
 			throw error;
