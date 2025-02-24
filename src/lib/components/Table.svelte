@@ -69,18 +69,13 @@
 			for (let i = 0; i < data.length; i++) {
 				const rowData = data[i];
 				const id = createRequest(rowData).id;
-				console.log('id', id);
 			}
-			// const addedRows = await table.getRows();
-			// console.log('addedRows', addedRows);
 		});
 
 		table.on('cellEdited', async (cell) => {
-			console.log(cell.getColumn().getField(), cell.getValue().toString());
 			let result = await patchRequest(cell.getRow().getData().id, {
 				[cell.getColumn().getField()]: cell.getValue().toString()
 			});
-			console.log('PATH RESULT', result);
 		});
 	});
 
@@ -100,7 +95,6 @@
 
 	async function handleImport() {
 		const importedData = await table.import('xlsx', ['.xlsx', '.csv', '.ods'], 'buffer');
-		console.log('importedData', importedData);
 	}
 </script>
 
