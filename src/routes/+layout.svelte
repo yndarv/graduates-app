@@ -39,7 +39,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/unemployed" class:active={$page.url.pathname === '/unemployed'}
-						>Незанятые</a
+						>Не трудоустроенные</a
 					>
 				</li>
 				<li class="nav-item">
