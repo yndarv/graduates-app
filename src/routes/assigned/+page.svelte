@@ -12,6 +12,7 @@
 	if (studentId) {
 		onMountHandler = async (table) => {
 			const newAssignedRowData = await createAssigned(studentId, {});
+			selectedStudentId.set(null);
 			table.addRow(newAssignedRowData, true).then((row) => {
 				const cellToEdit = row.getCell('profiling');
 				cellToEdit.edit();

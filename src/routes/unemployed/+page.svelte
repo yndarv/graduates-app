@@ -12,6 +12,7 @@
 	if (studentId) {
 		onMountHandler = async (table) => {
 			const newUnemployedRowData = await createUnemployed(studentId, {});
+			selectedStudentId.set(null);
 			table.addRow(newUnemployedRowData, true).then((row) => {
 				const cellToEdit = row.getCell('profiling');
 				cellToEdit.edit();

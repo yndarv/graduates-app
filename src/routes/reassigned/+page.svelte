@@ -12,6 +12,7 @@
 	if (studentId) {
 		onMountHandler = async (table) => {
 			const newReassignedRowData = await createReassigned(studentId, {});
+			selectedStudentId.set(null);
 			table.addRow(newReassignedRowData, true).then((row) => {
 				const cellToEdit = row.getCell('profiling');
 				cellToEdit.edit();
