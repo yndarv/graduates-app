@@ -1,44 +1,54 @@
 import { baseUrl } from '$lib/api';
+import { handleResponse } from '$lib/api';
 
 export async function createStudent(studentData) {
-	const response = await fetch(`${baseUrl}/api/students`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		credentials: 'include',
-		body: JSON.stringify(studentData)
-	});
+	try {
+		const response = await fetch(`${baseUrl}/api/students`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+			body: JSON.stringify(studentData)
+		});
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(errorData.message || 'Failed to create student');
+		return await handleResponse(response);
+	} catch (error) {
+		console.error('Error creating student:', error);
+		throw new Error(`Failed to create student: ${error.message}`);
 	}
-
-	return response.json();
 }
 
 export async function updateStudent(studentId, updateData) {
-	const response = await fetch(`${baseUrl}/api/students/${studentId}`, {
-		method: 'PATCH',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		credentials: 'include',
-		body: JSON.stringify(updateData)
-	});
+	try {
+		const response = await fetch(`${baseUrl}/api/students/${studentId}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+			body: JSON.stringify(updateData)
+		});
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(errorData.message || 'Failed to update student');
+		return await handleResponse(response);
+	} catch (error) {
+		console.error('Error updating student:', error);
+		throw new Error(`Failed to update student: ${error.message}`);
 	}
-
-	return response.json();
 }
 
 export async function deleteStudent(studentId) {
-	const response = await fetch(`${baseUrl}/api/students/${studentId}`, {
-		method: 'DELETE',
-		credentials: 'include'
-	});
+	try {
+		const response = await fetch(`${baseUrl}/api/students/${studentId}`, {
+			method: 'DELETE',
+			credentials: 'include'
+		});
+
+		if (!response.ok) {
+			await handleResponse(response);
+		}
+	} catch (error) {
+		console.error('Error deleting student:', error);
+		throw new Error(`Failed to delete student: ${error.message}`);
+	}
 }
